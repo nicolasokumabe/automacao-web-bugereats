@@ -10,5 +10,6 @@ describe('home page', () => {
       cy.visit('https://buger-eats.vercel.app')
       cy.get('#page-home main h1').should('have.text', 'Seja um parceiro entregador pela Buger Eats')
       cy.get('#page-deliver form h1').should('have.text', 'Cadastre-se para  fazer entregas')
+
     })
 })
