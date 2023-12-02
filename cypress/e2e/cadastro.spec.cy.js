@@ -7,7 +7,7 @@ describe('Cadastro', ()=>{
 
     var entregador = {
       nome: 'Nicolas Kumabe',
-      cpf: '0000014141',
+      cpf: '00000014141',
       email: 'nicolas@gmail.com',
       whatsapp: '11999999999',
       endereco:{
@@ -17,7 +17,9 @@ describe('Cadastro', ()=>{
         complemento: 'Apt 142',
         bairro: 'Itaim Bibi',
         cidade_uf: 'São Paulo/SP'
-      }
+      },
+      metodo_entrega: 'Moto',
+      cnh: 'cnhchris.png'
     }
 
     cy.get('input[name=name').type(entregador.nome)
@@ -34,5 +36,9 @@ describe('Cadastro', ()=>{
     cy.get('input[name="address"]').should('have.value', entregador.endereco.rua)
     cy.get('input[name="district"]').should('have.value', entregador.endereco.bairro)
     cy.get('input[name="city-uf"]').should('have.value', entregador.endereco.cidade_uf)
+
+    cy.contains('.delivery-method li', entregador.metodo_entrega).click()
+
+    cy.get('input[accept^="image"]').attachFile('/images/' + entregador.cnh)
   })  
 })
