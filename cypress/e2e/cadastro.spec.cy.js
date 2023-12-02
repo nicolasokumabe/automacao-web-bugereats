@@ -40,5 +40,11 @@ describe('Cadastro', ()=>{
     cy.contains('.delivery-method li', entregador.metodo_entrega).click()
 
     cy.get('input[accept^="image"]').attachFile('/images/' + entregador.cnh)
+
+    cy.get('.button-success').click()
+
+    cy.get('.swal2-popup').should('have.text', '×\n       \n       \n      \n    Aí Sim...Recebemos os seus dados. Fique de olho na sua caixa de email, pois e em breve retornamos o contato.FecharNoCancel')
+    cy.get('#swal2-title').should('have.text', 'Aí Sim...')
+    
   })  
 })
