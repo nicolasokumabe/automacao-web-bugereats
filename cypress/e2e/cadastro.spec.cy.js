@@ -51,4 +51,41 @@ describe('Cadastro', ()=>{
     cy.get('#page-home')
     
   })  
+
+  it('Usuário não se tornará um entregador se não preencher os campos', ()=>{
+    cy.viewport(1920, 1080)
+    cy.visit('https://buger-eats.vercel.app')
+
+    cy.get('a[href="/deliver"]').click()
+
+    cy.get('button[type=submit]').contains('Cadastre-se').click();
+
+    cy.get('input[name="name"] + .alert-error')
+    .should('be.visible')
+    .and('have.text', 'É necessário informar o nome');
+  
+    cy.get('input[name="cpf"] + .alert-error')
+    .should('be.visible')
+    .and('have.text', 'É necessário informar o CPF');
+
+    cy.get('input[name="email"] + .alert-error')
+    .should('be.visible')
+    .and('have.text', 'É necessário informar o email');
+
+    cy.get('input[placeholder="CEP"] + .alert-error')
+    .should('be.visible')
+    .and('have.text', 'É necessário informar o CEP');
+
+    cy.get('input[placeholder="Número"] + .alert-error')
+    .should('be.visible')
+    .and('have.text', 'É necessário informar o número do endereço');
+
+    cy.get('ul.delivery-method + .alert-error')
+    .should('be.visible')
+    .and('contain.text', 'Selecione o método de entrega');
+
+    cy.get('div.dropzone + .alert-error')
+    .should('be.visible')
+    .and('contain.text', 'Adicione uma foto da sua CNH');
+  })  
 })
